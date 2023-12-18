@@ -29,4 +29,20 @@ describe('The Counter component', () => {
       expect(paragraph).toBeDefined();
     });
   });
+  describe('if the button is clicked twice', () => {
+    it('should display 2', () => {
+      const counter = render(<Counter />);
+
+      const button = counter.getByText('Click', { selector: 'button' });
+
+      fireEvent.click(button);
+      fireEvent.click(button);
+
+      const paragraph = counter.getByText('The number of clicks: 2', {
+        selector: 'p',
+      });
+
+      expect(paragraph).toBeDefined();
+    });
+  });
 });
