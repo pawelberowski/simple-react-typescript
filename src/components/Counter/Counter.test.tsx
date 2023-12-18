@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import { Counter } from '.';
 import { describe, expect, it } from 'vitest';
 
@@ -8,6 +8,21 @@ describe('The Counter component', () => {
       const counter = render(<Counter />);
 
       const paragraph = counter.getByText('The number of clicks: 0', {
+        selector: 'p',
+      });
+
+      expect(paragraph).toBeDefined();
+    });
+  });
+  describe('if the button is clicked once', () => {
+    it('should display 1', () => {
+      const counter = render(<Counter />);
+
+      const button = counter.getByText('Click', { selector: 'button' });
+
+      fireEvent.click(button);
+
+      const paragraph = counter.getByText('The number of clicks: 1', {
         selector: 'p',
       });
 
