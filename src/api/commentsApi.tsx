@@ -1,4 +1,4 @@
-import { CreateComment, Comment } from '../types/Comment';
+import { CreateComment, Comment } from '../types/Comment.tsx';
 
 export async function createComment(
   newComment: CreateComment,
