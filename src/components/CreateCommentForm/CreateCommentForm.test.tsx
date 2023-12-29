@@ -34,4 +34,29 @@ describe('The CreateCommentForm', () => {
       });
     });
   });
+
+  describe('when the comment is created successfully', () => {
+    it('should update the created comments list', async () => {
+      const newComment = { id: 1, name: 'Comment name', body: 'Comment body' };
+
+      (createComment as Mock).mockResolvedValue(new Promise(() => newComment));
+
+      const createCommentForm = render(<CreateCommentForm />);
+
+      const createdComment = createCommentForm.findByText('Comment body');
+      expect(createdComment).toBeDefined();
+    });
+  });
+
+  describe('when there is an error creating the comment', () => {
+    it('should display an error message', async () => {
+      (createComment as Mock).mockRejectedValue(new Error());
+
+      const createCommentForm = render(<CreateCommentForm />);
+
+      const errorElement =
+        await createCommentForm.findByTestId('comment-error');
+      expect(errorElement).toBeDefined();
+    });
+  });
 });
