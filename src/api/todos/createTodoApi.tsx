@@ -1,4 +1,4 @@
-import { CreateTodo, Todo } from '../types/Todo.tsx';
+import { CreateTodo, Todo } from '../../types/Todo.tsx';
 
 export async function CreateTodo(newTodo: CreateTodo): Promise<Todo> {
   const response = await fetch('https://jsonplaceholder.typicode.com/todos', {
